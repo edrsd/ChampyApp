@@ -1,0 +1,146 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".FgmMainMenu" >
+
+    <ImageView
+        android:id="@+id/imageView16"
+        android:layout_width="260dp"
+        android:layout_height="80dp"
+        android:layout_marginStart="50dp"
+        android:layout_marginBottom="20dp"
+        android:src="@drawable/logo_champy"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <ImageView
+        android:id="@+id/imageView17"
+        android:layout_width="150dp"
+        android:layout_height="150dp"
+        android:layout_marginStart="330dp"
+        android:layout_marginBottom="20dp"
+        android:src="@drawable/logo_instrumentacion"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/imageView16" />
+
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:text="MENU PRINCIPAL"
+        android:textColor="@color/pavisa_blue"
+        android:textSize="50sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:id="@+id/iv_logo_pavisa"
+        android:layout_width="603dp"
+        android:layout_height="280dp"
+        android:layout_marginStart="100dp"
+        android:layout_marginTop="230dp"
+        android:src="@drawable/logo_pavisa"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/cv_menu_principal"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="150dp"
+        android:layout_marginEnd="100dp"
+        app:cardCornerRadius="20dp"
+        app:cardElevation="10dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <Button
+                android:id="@+id/btn_crear_mapa"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="15sp"
+                android:layout_marginTop="15dp"
+                android:layout_marginEnd="15sp"
+                android:text="Crear Mapa"
+                android:textSize="30sp" />
+
+            <Button
+                android:id="@+id/btn_lista_mapas"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="15sp"
+                android:layout_marginTop="5dp"
+                android:layout_marginEnd="15sp"
+                android:text="Lista de mapas"
+                android:textSize="30sp" />
+
+
+            <Button
+                android:id="@+id/btn_calibrar_camara"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="15sp"
+                android:layout_marginTop="5dp"
+                android:layout_marginEnd="15sp"
+                android:text="Calibrar Cámara"
+                android:textSize="30sp" />
+
+            <Button
+                android:id="@+id/btn_control_manual"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="15sp"
+                android:layout_marginTop="5dp"
+                android:layout_marginEnd="15sp"
+                android:text="Control manual"
+                android:textSize="30sp" />
+
+            <Button
+                android:id="@+id/btn_desconectar"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="15sp"
+                android:layout_marginTop="5dp"
+                android:layout_marginEnd="15sp"
+                android:text="Desconectar"
+                android:textSize="30sp" />
+
+            <Button
+                android:id="@+id/btn_reiniciar_robot"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="15sp"
+                android:layout_marginTop="5dp"
+                android:layout_marginEnd="15sp"
+                android:text="Reiniciar Robot"
+                android:textSize="30sp" />
+
+            <Button
+                android:id="@+id/btn_apagar_robot"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="15sp"
+                android:layout_marginTop="5dp"
+                android:layout_marginEnd="15sp"
+                android:text="Apagar Robot"
+                android:textSize="30sp" />
+
+
+
+        </LinearLayout>
+
+    </androidx.cardview.widget.CardView>
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".FgmMainMenu" >
+
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="MENU PRINCIPAL"
+        android:textColor="@color/pavisa_blue"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        android:visibility="gone"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:id="@+id/iv_logo_pavisa"
+        android:layout_width="537dp"
+        android:layout_height="94dp"
+        android:layout_marginTop="20dp"
+        android:src="@drawable/logo_pavisa"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/btn_crear_mapa"
+        android:layout_width="200dp"
+        android:layout_height="95dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="20dp"
+        android:text="Crear Mapa"
+        android:textSize="20sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/iv_logo_pavisa" />
+
+    <Button
+        android:id="@+id/btn_lista_mapas"
+        android:layout_width="200dp"
+        android:layout_height="95dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="5dp"
+        android:text="Lista de mapas"
+        android:textSize="20sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/btn_crear_mapa" />
+
+
+    <Button
+        android:id="@+id/btn_calibrar_camara"
+        android:layout_width="200dp"
+        android:layout_height="95dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="20dp"
+        android:text="Calibrar Cámara"
+        android:textSize="20sp"
+        app:layout_constraintStart_toEndOf="@id/btn_crear_mapa"
+        app:layout_constraintTop_toBottomOf="@id/iv_logo_pavisa" />
+
+    <Button
+        android:id="@+id/btn_control_manual"
+        android:layout_width="200dp"
+        android:layout_height="95dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="5dp"
+        android:text="Control manual"
+        android:textSize="20sp"
+        app:layout_constraintStart_toEndOf="@id/btn_lista_mapas"
+        app:layout_constraintTop_toBottomOf="@id/btn_calibrar_camara" />
+
+    <Button
+        android:id="@+id/btn_desconectar"
+        android:layout_width="200dp"
+        android:layout_height="65dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginEnd="20dp"
+        android:text="Desconectar"
+        android:textSize="20sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/iv_logo_pavisa" />
+
+    <Button
+        android:id="@+id/btn_reiniciar_robot"
+        android:layout_width="200dp"
+        android:layout_height="65dp"
+        android:layout_marginEnd="20dp"
+        android:text="Reiniciar"
+        android:textSize="20sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/btn_desconectar" />
+
+    <Button
+        android:id="@+id/btn_apagar_robot"
+        android:layout_width="200dp"
+        android:layout_height="65dp"
+        android:layout_marginEnd="20dp"
+        android:text="Apagar"
+        android:textSize="20sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/btn_reiniciar_robot" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

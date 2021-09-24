@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".FgmCrearMapaOnLive">
+
+    <org.crbt.champyapp.MyGridMapView
+        android:id="@+id/iv_mapa"
+        android:layout_width="335dp"
+        android:layout_height="180dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="20dp"
+        android:src="@drawable/mapa_blanco"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+
+    <LinearLayout
+        android:id="@+id/ll_container_stop_btns"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_margin="20dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/iv_mapa"
+        app:layout_constraintTop_toBottomOf="@+id/ll_container_variables">
+
+        <Button
+            android:id="@+id/btn_cambiar_modo"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Modo auto" />
+
+        <Button
+            android:id="@+id/btn_detener_mision"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Detener misión" />
+
+        <Button
+            android:id="@+id/btn_paro_emergencia"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Paro de emergencia" />
+
+        <Button
+            android:id="@+id/btn_activar_camara"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Activar cámara"/>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/ll_container_variables"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="20dp"
+        android:orientation="vertical"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/iv_mapa"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <TextView
+            android:id="@+id/tv_bateria"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Batería:?" />
+
+        <TextView
+            android:id="@+id/tv_voltaje"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Voltaje:?" />
+
+        <TextView
+            android:id="@+id/tv_corriente"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Corriente:?" />
+    </LinearLayout>
+
+    <FrameLayout
+        android:id="@+id/fl_joystick"
+        android:layout_width="160dp"
+        android:layout_height="160dp"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/iv_mapa">
+
+        <view
+            android:id="@+id/joystick"
+            class="org.crbt.champyapp.JoystickView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+    </FrameLayout>
+
+    <Button
+        android:id="@+id/btn_mantener_para_mover"
+        android:layout_width="150dp"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="20dp"
+        android:layout_marginBottom="20dp"
+        android:text="Mantener para mover Joystick"
+        android:visibility="visible"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+</androidx.constraintlayout.widget.ConstraintLayout>

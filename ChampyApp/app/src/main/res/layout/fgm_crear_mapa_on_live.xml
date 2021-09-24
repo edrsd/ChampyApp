@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".FgmCrearMapaOnLive">
+
+
+    <org.crbt.champyapp.MyGridMapView
+        android:id="@+id/iv_mapa"
+        android:layout_width="466dp"
+        android:layout_height="200dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="10dp"
+        android:src="@drawable/mapa_blanco"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/btn_mantener_mover_cmol"
+        android:layout_width="200dp"
+        android:layout_height="80dp"
+        android:layout_marginEnd="20dp"
+        android:layout_marginBottom="10dp"
+        android:text="Mantener para mover"
+        android:textSize="15sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <LinearLayout
+        android:id="@+id/linearLayout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="20dp"
+        android:orientation="vertical"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <Button
+            android:id="@+id/btn_cancelar_cmol"
+            android:layout_width="200dp"
+            android:layout_height="80dp"
+            android:text="Cancelar"
+            android:textSize="15sp" />
+
+        <Button
+            android:id="@+id/btn_guardar_cmol"
+            android:layout_width="200dp"
+            android:layout_height="80dp"
+            android:text="Guardar"
+            android:textSize="15sp" />
+
+        <Button
+            android:id="@+id/btn_menu_principal"
+            android:layout_width="200dp"
+            android:layout_height="80dp"
+            android:text="Menú principal"
+            android:textSize="15sp" />
+
+    </LinearLayout>
+
+    <FrameLayout
+        android:id="@+id/fl_joystick_ol"
+        android:layout_width="150dp"
+        android:layout_height="150dp"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent">
+
+        <view
+            android:id="@+id/joystick_ol"
+            class="org.crbt.champyapp.JoystickView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:clickable="false" />
+
+    </FrameLayout></androidx.constraintlayout.widget.ConstraintLayout>

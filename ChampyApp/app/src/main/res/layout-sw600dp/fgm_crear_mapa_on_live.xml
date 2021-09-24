@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".FgmCrearMapaOnLive">
+
+
+    <ImageView
+        android:id="@+id/imageView5"
+        android:layout_width="160dp"
+        android:layout_height="80dp"
+        android:layout_marginEnd="456dp"
+        android:layout_marginBottom="30dp"
+        android:src="@drawable/logo_champy"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/btn_mantener_mover_cmol" />
+
+    <ImageView
+        android:id="@+id/imageView6"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_marginEnd="500dp"
+        android:layout_marginBottom="30dp"
+        android:src="@drawable/logo_instrumentacion"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <org.crbt.champyapp.MyGridMapView
+        android:id="@+id/iv_mapa"
+        android:layout_width="900dp"
+        android:layout_height="450dp"
+        android:layout_marginStart="70dp"
+        android:layout_marginTop="40dp"
+        android:src="@drawable/mapa_blanco"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/btn_mantener_mover_cmol"
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="25dp"
+        android:layout_marginBottom="20dp"
+        android:text="Mantener para mover"
+        android:textSize="20sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <LinearLayout
+        android:id="@+id/linearLayout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="200dp"
+        android:layout_marginEnd="30dp"
+        android:orientation="vertical"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <Button
+            android:id="@+id/btn_cancelar_cmol"
+            android:layout_width="250dp"
+            android:layout_height="60dp"
+            android:text="Cancelar"
+            android:textSize="20sp" />
+
+        <Button
+            android:id="@+id/btn_guardar_cmol"
+            android:layout_width="250dp"
+            android:layout_height="60dp"
+            android:text="Guardar"
+            android:textSize="20sp" />
+
+        <Button
+            android:id="@+id/btn_menu_principal"
+            android:layout_width="250dp"
+            android:layout_height="60dp"
+            android:text="Menú principal"
+            android:textSize="20sp" />
+
+    </LinearLayout>
+
+    <FrameLayout
+        android:id="@+id/fl_joystick_ol"
+        android:layout_width="270dp"
+        android:layout_height="270dp"
+        android:layout_marginStart="10dp"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent">
+
+        <view
+            android:id="@+id/joystick_ol"
+            class="org.crbt.champyapp.JoystickView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:clickable="false" />
+
+    </FrameLayout></androidx.constraintlayout.widget.ConstraintLayout>

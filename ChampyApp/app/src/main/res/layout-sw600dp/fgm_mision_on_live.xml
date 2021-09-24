@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".FgmCrearMapaOnLive">
+
+    <ImageView
+        android:id="@+id/imageView15"
+        android:layout_width="150dp"
+        android:layout_height="80dp"
+        android:layout_marginEnd="560dp"
+        android:layout_marginBottom="10dp"
+        android:src="@drawable/logo_champy"
+        app:layout_constraintBottom_toTopOf="@+id/imageView18"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <ImageView
+        android:id="@+id/imageView18"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_marginEnd="588dp"
+        android:layout_marginBottom="20dp"
+        android:src="@drawable/logo_instrumentacion"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <org.crbt.champyapp.MyGridMapView
+        android:id="@+id/iv_mapa"
+        android:layout_width="900dp"
+        android:layout_height="450dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="20dp"
+        android:src="@drawable/mapa_blanco"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+
+    <LinearLayout
+        android:id="@+id/ll_container_stop_btns"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="50dp"
+        android:layout_marginEnd="20dp"
+        android:orientation="vertical"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/ll_container_variables">
+
+        <Button
+            android:id="@+id/btn_cambiar_modo"
+            android:layout_width="250dp"
+            android:layout_height="75dp"
+            android:text="Modo auto"
+            android:layout_marginBottom="30dp"
+            android:textSize="20sp" />
+
+        <Button
+            android:id="@+id/btn_detener_mision"
+            android:layout_width="250dp"
+            android:layout_height="75dp"
+            android:text="Detener misión"
+            android:layout_marginBottom="30dp"
+            android:textSize="20sp" />
+
+        <Button
+            android:id="@+id/btn_paro_emergencia"
+            android:layout_width="250dp"
+            android:layout_height="75dp"
+            android:text="Paro de emergencia"
+            android:layout_marginBottom="30dp"
+            android:textSize="20sp" />
+
+        <Button
+            android:id="@+id/btn_activar_camara"
+            android:layout_width="250dp"
+            android:layout_height="75dp"
+            android:text="Activar cámara"
+            android:textSize="20sp" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/ll_container_variables"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:layout_marginEnd="100dp"
+        android:orientation="vertical"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <TextView
+            android:id="@+id/tv_bateria"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Batería:?"
+            android:textSize="25sp" />
+
+        <TextView
+            android:id="@+id/tv_voltaje"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Voltaje:?"
+            android:textSize="25sp" />
+
+        <TextView
+            android:id="@+id/tv_corriente"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Corriente:?"
+            android:textSize="25sp" />
+    </LinearLayout>
+
+    <FrameLayout
+        android:id="@id/fl_joystick"
+        android:layout_width="270dp"
+        android:layout_height="270dp"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent">
+
+        <view
+            android:id="@+id/joystick"
+            class="org.crbt.champyapp.JoystickView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+    </FrameLayout>
+
+    <Button
+        android:id="@+id/btn_mantener_para_mover"
+        android:layout_width="150dp"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="40dp"
+        android:layout_marginBottom="40dp"
+        android:text="Mantener para mover Joystick"
+        android:visibility="visible"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+</androidx.constraintlayout.widget.ConstraintLayout>
