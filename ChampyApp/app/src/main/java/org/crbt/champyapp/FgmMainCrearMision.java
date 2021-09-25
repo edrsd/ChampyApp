@@ -776,9 +776,14 @@ public class FgmMainCrearMision extends Fragment {
 
     public void activarListenerDatosRobot(){
         mainViewModel.getDatosRobot().observe(getViewLifecycleOwner(),datosRecibidos->{
-            fgmBinding.tvBateria.setText((int) datosRecibidos[0]);
-            fgmBinding.tvVoltaje.setText((int) datosRecibidos[1]);
-            fgmBinding.tvCorriente.setText((int) datosRecibidos[2]);
+            fgmBinding.tvBateria.setText("Batería: "+datosRecibidos[0]+"%; ");
+            fgmBinding.tvVoltaje.setText("Voltaje: "+datosRecibidos[1]+"V; ");
+            fgmBinding.tvCorriente.setText("Corriente: "+ datosRecibidos[2]+"A; ");
+            fgmBinding.tvLoopClosure.setText("Lc: "+datosRecibidos[3]);
+            fgmBinding.tvTagMapa.setText("Tag mapa: "+datosRecibidos[4]+"; ");
+            fgmBinding.tvRefid.setText("RefId: "+datosRecibidos[5]+"; ");
+            fgmBinding.tvTemperaturaCamara.setText("T cámara: "+datosRecibidos[6]+"°C; ");
+            fgmBinding.tvTemperaturaGpu.setText("T GPU: "+datosRecibidos[7]+"°C");
         });
         mainViewModel.iniciarEscuchaDatosRobot();
     }

@@ -31,7 +31,7 @@
         android:layout_marginTop="20dp"
         android:src="@drawable/mapa_blanco"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="@id/ll_container_variables2" />
 
 
     <LinearLayout
@@ -60,6 +60,48 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Corriente:?" />
+
+        <TextView
+            android:id="@+id/tv_loop_closure"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="lc:?" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/ll_container_variables2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintTop_toBottomOf="@id/ll_container_variables"
+        app:layout_constraintStart_toStartOf="parent">
+
+
+        <TextView
+            android:id="@+id/tv_tag_mapa"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Tag mapa:?" />
+
+        <TextView
+            android:id="@+id/tv_refid"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Refid:?" />
+
+        <TextView
+            android:id="@+id/tv_temperatura_camara"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="T Cámara:?" />
+
+        <TextView
+            android:id="@+id/tv_temperatura_gpu"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="T GPU:?" />
+
     </LinearLayout>
 
     <LinearLayout
