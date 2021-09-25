@@ -36,6 +36,7 @@ public class SubMapping extends AbstractNodeMain {
     int[] pixels;
     private double[] posicionRobot;
     private int orientacionRobot;
+    private double resolucion, origenX,origenY;
 
     private final int colorBlanco= Color.WHITE;
     private final int colorNegro= Color.BLACK;
@@ -73,8 +74,8 @@ public class SubMapping extends AbstractNodeMain {
 
                 Canvas canvas=new Canvas(copyBitmapMap);
 
-                double resolucion=0.1;
-                double anchoPxMarcador=.6/resolucion;
+                double medidaRealRobot=0.5;//en cm
+                double anchoPxMarcador=medidaRealRobot/resolucion;
 
                 int posicioRX= (int) (posicionRobot[0]/resolucion);
                 int posicioRY= (int) (posicionRobot[1]/resolucion);
@@ -84,10 +85,16 @@ public class SubMapping extends AbstractNodeMain {
                 paint.setStyle(Paint.Style.FILL);
 
                 Path path=new Path();
-                path.moveTo(centroX+posicioRX,centroY-posicioRY-(int)(anchoPxMarcador/2));
-                path.lineTo(centroX+posicioRX+(int)(anchoPxMarcador/2),centroY-posicioRY+(int)(anchoPxMarcador/2));
-                path.lineTo(centroX+posicioRX,centroY-posicioRY+(int)(anchoPxMarcador/4));
-                path.lineTo(centroX+posicioRX-(int)(anchoPxMarcador/2),centroY-posicioRY+(int)(anchoPxMarcador/2));
+//                path.moveTo(centroX+posicioRX,centroY-posicioRY-(int)(anchoPxMarcador/2));
+//                path.lineTo(centroX+posicioRX+(int)(anchoPxMarcador/2),centroY-posicioRY+(int)(anchoPxMarcador/2));
+//                path.lineTo(centroX+posicioRX,centroY-posicioRY+(int)(anchoPxMarcador/4));
+//                path.lineTo(centroX+posicioRX-(int)(anchoPxMarcador/2),centroY-posicioRY+(int)(anchoPxMarcador/2));
+
+                path.moveTo(-(centroX-(float)origenX)+centroX+posicioRX,(centroY-(float)origenY)+centroY-posicioRY-(int)(anchoPxMarcador/2));
+                path.lineTo(-(centroX-(float)origenX)+centroX+posicioRX+(int)(anchoPxMarcador/2),(centroY-(float)origenY)+centroY-posicioRY+(int)(anchoPxMarcador/2));
+                path.lineTo(-(centroX-(float)origenX)+centroX+posicioRX,(centroY-(float)origenY)+centroY-posicioRY+(int)(anchoPxMarcador/4));
+                path.lineTo(-(centroX-(float)origenX)+centroX+posicioRX-(int)(anchoPxMarcador/2),(centroY-(float)origenY)+centroY-posicioRY+(int)(anchoPxMarcador/2));
+
                 path.close();
 
                 Matrix mMatrix = new Matrix();
@@ -106,16 +113,19 @@ public class SubMapping extends AbstractNodeMain {
         Subscriber<OccupancyGrid> susMapa = connectedNode.newSubscriber("map", OccupancyGrid._TYPE);
         susMapa.addMessageListener( mapa->{
             buffer = mapa.getData();
-            if(initFlag==false){
-                initFlag=true;
+//            if(initFlag==false){
+//                initFlag=true;
                 info = mapa.getInfo();
+                resolucion=info.getResolution();
                 mapWidth = info.getWidth();
                 mapHeight = info.getHeight();
+                origenX= -info.getOrigin().getPosition().getX()/resolucion;
+                origenY= -info.getOrigin().getPosition().getY()/resolucion;
                 centroX=mapWidth/2;
                 centroY=mapHeight/2;
                 bitmapMap = Bitmap.createBitmap(info.getWidth(), info.getHeight(), Bitmap.Config.ARGB_8888);
                 pixels=new int[mapWidth];
-            }
+//            }
             createBitmapMap();
         });}
 
