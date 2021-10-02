@@ -130,9 +130,9 @@ public class FgmListaMapas extends Fragment
 
             fgmBinding.clContenedorBotones.setVisibility(View.VISIBLE);
 
-            fgmBinding.btnEliminarMapa.setTextColor(Color.WHITE);
-            fgmBinding.btnEliminarMapa.setBackgroundColor(getResources().getColor(R.color.pavisa_blue));
-            fgmBinding.btnEliminarMapa.setText("Eliminar");
+//            fgmBinding.btnEliminarMapa.setTextColor(Color.WHITE);
+//            fgmBinding.btnEliminarMapa.setBackgroundColor(getResources().getColor(R.color.pavisa_blue));
+//            fgmBinding.btnEliminarMapa.setText("Eliminar");
 
 
             Toast.makeText(getContext(),"mapa "+mapaSeleccionado+"seleccionado",Toast.LENGTH_SHORT).show();
@@ -167,6 +167,7 @@ public class FgmListaMapas extends Fragment
         fgmBinding.btnCrearMision.setOnClickListener(view -> {
             if(mapaSeleccionado!=null){
                 btnCrearMisionActivado=true;
+                desabilitarBotones();
 
                 mainViewModel.sshCargarMapa(mapaSeleccionado);
 
@@ -184,6 +185,7 @@ public class FgmListaMapas extends Fragment
 
         fgmBinding.btnListaMisiones.setOnClickListener(view -> {
             btnListaMisionesActivado=true;
+            desabilitarBotones();
 
             mainViewModel.sshCargarMapa(mapaSeleccionado);
 
@@ -197,11 +199,23 @@ public class FgmListaMapas extends Fragment
             if(mapaSeleccionado!=null){
                 btnEliminarActivado=true;
 
-                fgmBinding.btnEliminarMapa.setTextColor(Color.BLACK);
-                fgmBinding.btnEliminarMapa.setBackgroundColor(Color.YELLOW);
-                fgmBinding.btnEliminarMapa.setText("Eliminando...");
-                mainViewModel.setNombreMapa(mapaSeleccionado);
-                mainViewModel.sshEliminarMapa();
+                final AlertDialog.Builder dialog = new AlertDialog.Builder(getContext());
+                dialog.setMessage("¿Desea eliminar el mapa: "+mapaSeleccionado+" ?").
+                        setPositiveButton("Eliminar",(a,b)->{
+
+                            desabilitarBotones();
+
+                            fgmBinding.btnEliminarMapa.setTextColor(Color.BLACK);
+                            fgmBinding.btnEliminarMapa.setBackgroundColor(Color.YELLOW);
+                            fgmBinding.btnEliminarMapa.setText("Eliminando...");
+                            mainViewModel.setNombreMapa(mapaSeleccionado);
+                            mainViewModel.sshEliminarMapa();
+
+                        }).
+                        setNegativeButton("Cancelar",(a,b)->{
+                            a.dismiss();
+                        });
+                dialog.show();
             }
             else{
                 Toast.makeText(getContext(),"Debe seleccionar un mapa para eliminarlo",Toast.LENGTH_SHORT).show();
@@ -210,12 +224,28 @@ public class FgmListaMapas extends Fragment
 
         fgmBinding.btnVolverMenuPrincipal.setOnClickListener(view -> {
             btnMenuPrincipalActivado=true;
+            desabilitarBotones();
 
             irMenuPrincipal();
         });
     }
 
 //----------------------------------------------------------------------------------------------
+
+    private void desabilitarBotones(){
+        fgmBinding.btnCrearMision.setEnabled(false);
+        fgmBinding.btnListaMisiones.setEnabled(false);
+        fgmBinding.btnEliminarMapa.setEnabled(false);
+        fgmBinding.btnVolverMenuPrincipal.setEnabled(false);
+    }
+
+    private void habilitarBotones(){
+        fgmBinding.btnCrearMision.setEnabled(true);
+        fgmBinding.btnListaMisiones.setEnabled(true);
+        fgmBinding.btnEliminarMapa.setEnabled(true);
+        fgmBinding.btnVolverMenuPrincipal.setEnabled(true);
+    }
+
 
     public void activarListenerListaMapas(){
         mainViewModel.getListaSolicitada().observe(getViewLifecycleOwner(),listaRecibida->{
@@ -320,9 +350,12 @@ public class FgmListaMapas extends Fragment
                 if(btnEliminarActivado){
                     btnEliminarActivado=false;
 
-//                    fgmBinding.btnEliminarMapa.setTextColor(Color.WHITE);
-//                    fgmBinding.btnEliminarMapa.setBackgroundColor(getResources().getColor(R.color.pavisa_blue));
-//                    fgmBinding.btnEliminarMapa.setText("Eliminar");
+                    //habilitarr botones
+                    habilitarBotones();
+
+                    fgmBinding.btnEliminarMapa.setTextColor(Color.WHITE);
+                    fgmBinding.btnEliminarMapa.setBackgroundColor(getResources().getColor(R.color.pavisa_blue));
+                    fgmBinding.btnEliminarMapa.setText("Eliminar");
 
                     fgmBinding.clContenedorBotones.setVisibility(View.GONE);
                     //Se actualiza la lista de misiones

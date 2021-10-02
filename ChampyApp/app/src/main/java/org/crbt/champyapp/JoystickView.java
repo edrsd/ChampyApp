@@ -21,6 +21,7 @@ public class JoystickView extends View {
     float joystickRadius;
     float posX;
     float posY;
+    float coefVelocidad=0.5f;
 
     RosRepository rosRepository;
     PubJoystick nodoPublicador;
@@ -229,5 +230,9 @@ public class JoystickView extends View {
 
     public PubJoystick getNodoPublicador(){
         return this.nodoPublicador;
+    }
+
+    public void setVelocidadRuedas(int seekBarVelocidad){
+        coefVelocidad=seekBarVelocidad/100f+0.5f;
     }
 }

@@ -141,6 +141,7 @@ public class FgmMainMenu extends Fragment  {
                     .setNegativeButton("Cancelar",(dialogInterface,i)->{ dialogInterface.dismiss(); });
             dialog.show();
             Toast.makeText(getContext(),"Apagando robot",Toast.LENGTH_SHORT).show();
+
         });
 
         fgmBinding.btnReiniciarRobot.setOnClickListener(view -> {
@@ -151,6 +152,7 @@ public class FgmMainMenu extends Fragment  {
                     .setNegativeButton("Cancelar",(dialogInterface,i)->{ dialogInterface.dismiss(); });
             dialog.show();
             Toast.makeText(getContext(),"Reiniciando robot",Toast.LENGTH_SHORT).show();
+
         });
     }
 
@@ -167,7 +169,9 @@ public class FgmMainMenu extends Fragment  {
         btnApagarActivado=true;
         fgmBinding.btnApagarRobot.setText("Apagando...");
         fgmBinding.btnApagarRobot.setBackgroundColor(Color.RED);
+        mainViewModel.desconectar();
         mainViewModel.solicitarApagarRobot();
+        irInicio();
     }
 
 
@@ -175,7 +179,9 @@ public class FgmMainMenu extends Fragment  {
         btnReiniciarActivado=true;
         fgmBinding.btnReiniciarRobot.setText("Reiniciando...");
         fgmBinding.btnReiniciarRobot.setBackgroundColor(Color.RED);
+        mainViewModel.desconectar();
         mainViewModel.solicitarReiniciarRobot();
+        irInicio();
     }
 
     public void irFgmConexion(){

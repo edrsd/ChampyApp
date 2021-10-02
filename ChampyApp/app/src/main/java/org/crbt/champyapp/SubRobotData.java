@@ -29,7 +29,7 @@ public class SubRobotData extends AbstractNodeMain {
     @Override
     public void onStart(ConnectedNode connectedNode) {
 
-        Subscriber<Float32MultiArray> suscriber = connectedNode.newSubscriber("dato_robot", Float32MultiArray._TYPE);
+        Subscriber<Float32MultiArray> suscriber = connectedNode.newSubscriber("info_robot", Float32MultiArray._TYPE);
 
         suscriber.addMessageListener(infoDato -> {
             Log.i(TAG, " Entrando en onNewMessage DatoRobot ");

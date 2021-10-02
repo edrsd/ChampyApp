@@ -153,4 +153,100 @@
         android:visibility="visible"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/cv_pinzas"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="168dp"
+        android:layout_marginTop="244dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <LinearLayout
+            android:layout_width="150dp"
+            android:layout_height="wrap_content"
+            android:layout_margin="5dp"
+            android:orientation="vertical">
+
+            <Button
+                android:id="@+id/btn_abrir_pinzas"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Abrir Pinzas"
+                android:textSize="12sp" />
+
+            <Button
+                android:id="@+id/btn_cerrar_pinzas"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Cerrar Pinzas"
+                android:textSize="12sp" />
+
+            <SeekBar
+                android:id="@+id/sb_velocidad_pinza"
+                style="@style/Widget.AppCompat.SeekBar.Discrete"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:max="100"
+                android:progress="1" />
+
+            <TextView
+                android:id="@+id/tv_velocidad_pinza"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="Velocidad"
+                android:textSize="12sp" />
+        </LinearLayout>
+
+    </androidx.cardview.widget.CardView>
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/cv_staker"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="244dp"
+        android:layout_marginEnd="184dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <LinearLayout
+            android:layout_width="150dp"
+            android:layout_height="wrap_content"
+            android:layout_margin="5dp"
+            android:orientation="vertical">
+
+            <Button
+                android:id="@+id/btn_sacar_staker"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Sacar Staker"
+                android:textSize="12sp" />
+
+            <Button
+                android:id="@+id/btn_meter_staker"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Meter Staker"
+                android:textSize="12sp" />
+
+            <SeekBar
+                android:id="@+id/sb_velocidadStaker"
+                style="@style/Widget.AppCompat.SeekBar.Discrete"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:max="100"
+                android:progress="1" />
+
+            <TextView
+                android:id="@+id/tv_velocidad_staker"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="Velocidad"
+                android:textSize="12sp" />
+        </LinearLayout>
+    </androidx.cardview.widget.CardView>
+
 </androidx.constraintlayout.widget.ConstraintLayout>

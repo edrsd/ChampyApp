@@ -98,7 +98,18 @@ public class FgmCrearMapa extends Fragment {
         activarListenerSsh();
 
         fgmBinding.btnCrearMapaCm.setOnClickListener(view -> {
-            mainViewModel.sshIniciarMapeo(fgmBinding.etNombreDelMapa.getText().toString());
+
+            String nombreMapa=fgmBinding.etNombreDelMapa.getText().toString();
+
+            if(fgmBinding.etNombreDelMapa.getText().toString().isEmpty() || fgmBinding.etNombreDelMapa.getText().toString().equals("")){
+                Toast.makeText(getContext(),"Debe colocar un nombre para el mapa",Toast.LENGTH_LONG).show();
+            }else{
+                mainViewModel.sshIniciarMapeo(nombreMapa);
+
+                fgmBinding.btnVolverMenuPrincipal.setEnabled(false);
+                fgmBinding.btnCrearMapaCm.setEnabled(false);
+            }
+
         });
 
         fgmBinding.btnVolverMenuPrincipal.setOnClickListener(view -> {
@@ -149,7 +160,7 @@ public class FgmCrearMapa extends Fragment {
             } else if (sshCommandsStatus == SshRepositoryImpl.SshCommandsStatus.PENDING) {
                 fgmBinding.btnCrearMapaCm.setTextColor(Color.BLACK);
                 fgmBinding.btnCrearMapaCm.setBackgroundColor(Color.YELLOW);
-                fgmBinding.btnCrearMapaCm.setText("Guardado...");
+                fgmBinding.btnCrearMapaCm.setText("Guardando...");
 
             } else if (sshCommandsStatus == SshRepositoryImpl.SshCommandsStatus.FAILED) {
                 Toast.makeText(getContext(), "SSH: No se ha podido realizar el comando", Toast.LENGTH_LONG).show();

@@ -9,31 +9,30 @@
 
     <ImageView
         android:id="@+id/iv_pavisa_logo"
-        android:layout_width="496dp"
-        android:layout_height="157dp"
-        android:layout_marginTop="28dp"
+        android:layout_width="948dp"
+        android:layout_height="340dp"
+        android:layout_marginTop="76dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/pavisa_negro" />
 
     <ImageView
         android:id="@+id/iv_inst_logo"
-        android:layout_width="118dp"
-        android:layout_height="118dp"
-        android:layout_marginStart="45dp"
-        android:layout_marginBottom="60dp"
+        android:layout_width="237dp"
+        android:layout_height="201dp"
+        android:layout_marginStart="60dp"
+        android:layout_marginBottom="76dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:srcCompat="@drawable/logo_instrumentacion" />
 
     <ImageView
         android:id="@+id/iv_champy_logo"
-        android:layout_width="287dp"
-        android:layout_height="89dp"
-        android:layout_marginEnd="44dp"
-        android:layout_marginBottom="48dp"
+        android:layout_width="636dp"
+        android:layout_height="149dp"
+        android:layout_marginEnd="60dp"
+        android:layout_marginBottom="64dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:srcCompat="@drawable/logo_champy" />

@@ -78,10 +78,10 @@
                 android:id="@+id/btn_crear_mapa_cm"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:textSize="20sp"
                 android:layout_margin="10dp"
                 android:layout_weight="1.5"
-                android:text="Guargar Mapa" />
+                android:text="Crear mapa"
+                android:textSize="20sp" />
 
         </LinearLayout>
     </androidx.cardview.widget.CardView>

@@ -69,8 +69,8 @@
                     android:id="@+id/et_nombre_mision"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:inputType="textShortMessage"
                     android:digits="ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz1234567890"
+                    android:inputType="textShortMessage"
                     android:singleLine="true" />
             </com.google.android.material.textfield.TextInputLayout>
 

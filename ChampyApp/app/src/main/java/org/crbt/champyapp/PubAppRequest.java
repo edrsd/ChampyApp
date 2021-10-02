@@ -32,6 +32,7 @@ public class PubAppRequest extends AbstractNodeMain {
             @Override
             protected void setup() {
                 comandoHaciaRobot = publicador.newMessage();
+//                boolean sub=publicador.hasSubscribers();
             }
 
             @Override

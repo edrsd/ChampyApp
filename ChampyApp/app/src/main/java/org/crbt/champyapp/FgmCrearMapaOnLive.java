@@ -107,6 +107,8 @@ public class FgmCrearMapaOnLive extends Fragment {
 
         fgmBinding.btnGuardarCmol.setOnClickListener(view1 -> {
             isSaveBtnClicked=true;
+            desabilitarBotones();
+
             fgmBinding.btnGuardarCmol.setTextColor(Color.BLACK);
             fgmBinding.btnGuardarCmol.setBackgroundColor(Color.YELLOW);
             fgmBinding.btnGuardarCmol.setText("Guardando...");
@@ -118,6 +120,7 @@ public class FgmCrearMapaOnLive extends Fragment {
 
         fgmBinding.btnCancelarCmol.setOnClickListener(view -> {
             isCancelBtnClicked=true;
+            desabilitarBotones();
 //            activarListenerRespuestaRobot();
             mainViewModel.solicitarTerminarMapeoEnRobot();
 
@@ -130,6 +133,7 @@ public class FgmCrearMapaOnLive extends Fragment {
 
         fgmBinding.btnMenuPrincipal.setOnClickListener(view -> {
             btnMenuPrincipalActivado=true;
+            desabilitarBotones();
 
             mainViewModel.solicitarTerminarMapeoEnRobot();
             Toast.makeText(getContext(),"Solicitando finalización de mapeo con publicador_app=5",Toast.LENGTH_SHORT).show();
@@ -160,6 +164,17 @@ public class FgmCrearMapaOnLive extends Fragment {
 
     }
 
+
+    private void desabilitarBotones(){
+        fgmBinding.btnCancelarCmol.setEnabled(false);
+        fgmBinding.btnGuardarCmol.setEnabled(false);
+        fgmBinding.btnMenuPrincipal.setEnabled(false);
+        fgmBinding.btnMantenerMoverCmol.setEnabled(false);
+
+        fgmBinding.flJoystickOl.setVisibility(View.GONE);
+        joystick.setTouchEnable(false);
+        joystick.desactivarJoystickConInactividad();
+    }
 
     public void activarListenerDatosRobot(){
         mainViewModel.getDatosRobot().observe(getViewLifecycleOwner(),datosRecibidos->{

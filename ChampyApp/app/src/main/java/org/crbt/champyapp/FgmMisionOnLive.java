@@ -12,6 +12,7 @@ import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.SeekBar;
 import android.widget.Toast;
 
 import org.crbt.champyapp.databinding.FgmCrearMisionBinding;
@@ -26,6 +27,8 @@ public class FgmMisionOnLive extends Fragment {
     FgmMisionOnLiveBinding fgmBinding;
     MainViewModel mainViewModel;
     JoystickView joystick;
+
+    int velPinza,velStaker;
 
     boolean btnDetenerMisionActivado=false,btnCambiarModoActivado=false,btnParoActivado=false;
 
@@ -135,6 +138,27 @@ public class FgmMisionOnLive extends Fragment {
         });
         //------------------------------------
 
+        fgmBinding.btnAbrirPinzas.setOnClickListener(view -> {
+            mainViewModel.abrirPinzas(velPinza);
+
+//            Toast.makeText(getContext(),"Abriendo pinzas",Toast.LENGTH_SHORT).show();
+        });
+
+        fgmBinding.btnCerrarPinzas.setOnClickListener(view -> {
+            mainViewModel.cerrarPinza(velPinza);
+//            Toast.makeText(getContext(),"Cerrando pinzas",Toast.LENGTH_SHORT).show();
+        });
+
+        fgmBinding.btnSacarStaker.setOnClickListener(view -> {
+            mainViewModel.sacarStaker(velStaker);
+//            Toast.makeText(getContext(),"Sacando staker staker",Toast.LENGTH_SHORT).show();
+        });
+
+        fgmBinding.btnMeterStaker.setOnClickListener(view -> {
+            mainViewModel.meterStaker(velStaker);
+//            Toast.makeText(getContext(),"Metiendo staker",Toast.LENGTH_SHORT).show();
+        });
+
         fgmBinding.btnMantenerParaMover.setOnTouchListener((view, motionEvent) -> {
             if(motionEvent.getAction()== MotionEvent.ACTION_DOWN){
                 if(joystick.getNodoPublicador()!=null){
@@ -152,6 +176,42 @@ public class FgmMisionOnLive extends Fragment {
             }
             return true;
         });
+
+        fgmBinding.sbVelocidadStaker.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
+            @Override
+            public void onProgressChanged(SeekBar seekBar, int positionBar, boolean b) {
+                velStaker=positionBar;
+                Toast.makeText(getContext(),"Velocidad de staker: "+Integer.toString(positionBar),Toast.LENGTH_SHORT).show();
+            }
+
+            @Override
+            public void onStartTrackingTouch(SeekBar seekBar) {
+
+            }
+
+            @Override
+            public void onStopTrackingTouch(SeekBar seekBar) {
+
+            }
+        });
+
+        fgmBinding.sbVelocidadPinza.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
+            @Override
+            public void onProgressChanged(SeekBar seekBar, int positionBar, boolean b) {
+                velPinza=positionBar;
+                Toast.makeText(getContext(),"Velocidad de pinza: "+Integer.toString(positionBar),Toast.LENGTH_SHORT).show();
+            }
+
+            @Override
+            public void onStartTrackingTouch(SeekBar seekBar) {
+
+            }
+
+            @Override
+            public void onStopTrackingTouch(SeekBar seekBar) {
+
+            }
+        });
     }
 
 
@@ -167,10 +227,16 @@ public class FgmMisionOnLive extends Fragment {
 
                             joystick.setNodoPublicador(new PubJoystick());
                             fgmBinding.btnMantenerParaMover.setVisibility(View.VISIBLE);
+                            fgmBinding.cvPinzas.setVisibility(View.VISIBLE);
+                            fgmBinding.cvStaker.setVisibility(View.VISIBLE);
+
+
                         }
                         else if(fgmBinding.btnCambiarModo.getText().toString().equals("Modo auto")){
 //                            fgmBinding.flJoystick.setVisibility(View.GONE);
                             fgmBinding.btnMantenerParaMover.setVisibility(View.GONE);
+                            fgmBinding.cvPinzas.setVisibility(View.GONE);
+                            fgmBinding.cvStaker.setVisibility(View.GONE);
                             fgmBinding.btnCambiarModo.setText("Modo manual");
 
                             //Se detine el nodo publicador del joystick

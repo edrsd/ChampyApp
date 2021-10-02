@@ -34,7 +34,7 @@ public class FgmMoverRobot extends Fragment implements RosRepository.ConexionRea
     MainViewModel mainViewModel;
     public PubJoystick pubJoystick;
 
-    int velPinza,velStaker;
+    int velPinza,velStaker,velRuedas;
 
     boolean btnParoActivado=false;
 
@@ -153,16 +153,40 @@ public class FgmMoverRobot extends Fragment implements RosRepository.ConexionRea
 
         fgmBinding.btnMantenerMover.setOnTouchListener((view, motionEvent) -> {
             if(motionEvent.getAction()==MotionEvent.ACTION_DOWN){
-                fgmBinding.flJoystick.setVisibility(View.VISIBLE);
-                joystick.setTouchEnable(true);
-                joystick.activarJoystickConInactividad();
+                if(joystick.getNodoPublicador()!=null){
+                    fgmBinding.flJoystick.setVisibility(View.VISIBLE);
+                    joystick.setTouchEnable(true);
+                    joystick.activarJoystickConInactividad();
+                }
             }
             else if(motionEvent.getAction()==MotionEvent.ACTION_UP){
-                fgmBinding.flJoystick.setVisibility(View.GONE);
-                joystick.setTouchEnable(false);
-                joystick.desactivarJoystickConInactividad();
+                if(joystick.getNodoPublicador()!=null){
+                    fgmBinding.flJoystick.setVisibility(View.GONE);
+                    joystick.setTouchEnable(false);
+                    joystick.desactivarJoystickConInactividad();
+                }
             }
             return true;
+        });
+
+        fgmBinding.sbVelocidadRobot.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
+            @Override
+            public void onProgressChanged(SeekBar seekBar, int positionBar, boolean b) {
+                velRuedas=positionBar;
+                joystick.setVelocidadRuedas(velRuedas);
+                float vel=velRuedas/100f+0.5f;
+                Toast.makeText(getContext(),"Velocidad de ruedas: "+vel,Toast.LENGTH_SHORT).show();
+            }
+
+            @Override
+            public void onStartTrackingTouch(SeekBar seekBar) {
+
+            }
+
+            @Override
+            public void onStopTrackingTouch(SeekBar seekBar) {
+
+            }
         });
 
         fgmBinding.sbVelocidadStaker.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
