@@ -40,24 +40,28 @@
             android:id="@+id/tv_bateria"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:textSize="25sp"
             android:text="Batería:?" />
 
         <TextView
             android:id="@+id/tv_voltaje"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:textSize="25sp"
             android:text="Voltaje:?" />
 
         <TextView
             android:id="@+id/tv_corriente"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:textSize="25sp"
             android:text="Corriente:?" />
 
         <TextView
             android:id="@+id/tv_loop_closure"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:textSize="25sp"
             android:text="lc:?" />
 
     </LinearLayout>
@@ -75,24 +79,28 @@
             android:id="@+id/tv_tag_mapa"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:textSize="25sp"
             android:text="Tag mapa:?" />
 
         <TextView
             android:id="@+id/tv_refid"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:textSize="25sp"
             android:text="Refid:?" />
 
         <TextView
             android:id="@+id/tv_temperatura_camara"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:textSize="25sp"
             android:text="T Cámara:?" />
 
         <TextView
             android:id="@+id/tv_temperatura_gpu"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:textSize="25sp"
             android:text="T GPU:?" />
 
     </LinearLayout>
@@ -102,7 +110,7 @@
         android:layout_width="900dp"
         android:layout_height="450dp"
         android:layout_marginStart="70dp"
-        android:layout_marginTop="40dp"
+        android:layout_marginTop="70dp"
         android:src="@drawable/mapa_blanco"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />

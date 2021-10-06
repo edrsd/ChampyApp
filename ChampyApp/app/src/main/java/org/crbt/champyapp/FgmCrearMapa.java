@@ -108,6 +108,7 @@ public class FgmCrearMapa extends Fragment {
 
                 fgmBinding.btnVolverMenuPrincipal.setEnabled(false);
                 fgmBinding.btnCrearMapaCm.setEnabled(false);
+                fgmBinding.tilCrearMapa.setEnabled(false);
             }
 
         });

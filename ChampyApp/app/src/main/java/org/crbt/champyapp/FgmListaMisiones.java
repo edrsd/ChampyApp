@@ -117,6 +117,7 @@ public class FgmListaMisiones extends Fragment {
         fgmBinding.rvListaMisiones.setLayoutManager(linearLayoutManager);
 
         listaMisiones=new ArrayList<>();
+        listaMisiones.add("Espere, cargando lista...");
 
         setupAdapterRecyclerViewList();
     }
@@ -128,6 +129,7 @@ public class FgmListaMisiones extends Fragment {
         fgmBinding.rvListaTempladoresMain.setLayoutManager(new LinearLayoutManager(getContext().getApplicationContext()));
 
         initArrayLists();
+
 
         setupAdaptersRecyclerViewMaquinas();
         setupAdaptersRecyclerViewTempladores();
@@ -166,18 +168,18 @@ public class FgmListaMisiones extends Fragment {
         listMissionsAdapter=new AdaptadorDeListas(listaMisiones);
         fgmBinding.rvListaMisiones.setAdapter(listMissionsAdapter);
 
-
         listMissionsAdapter.setOnClickListener(view1 -> {
 
             posActualMisionSeleccionada=fgmBinding.rvListaMisiones.getChildLayoutPosition(view1);
-            misionSeleccionada=listaMisiones.get(posActualMisionSeleccionada);
+            listMissionsAdapter.setItemPosition(posActualMisionSeleccionada);
 
+            misionSeleccionada=listaMisiones.get(posActualMisionSeleccionada);
 
             mainViewModel.pedirMisionARobot(misionSeleccionada);
 
             fgmBinding.clContenedorBotones.setVisibility(View.VISIBLE);
 
-            Toast.makeText(getContext(),"mision "+misionSeleccionada+"seleccionada",Toast.LENGTH_SHORT).show();
+//            Toast.makeText(getContext(),"mision "+misionSeleccionada+"seleccionada",Toast.LENGTH_SHORT).show();
 
         });
     }
@@ -200,6 +202,8 @@ public class FgmListaMisiones extends Fragment {
 
         fgmBinding.btnComenzarMision.setOnClickListener(view -> {
             btnComenzarMisionActivado=true;
+            deshabilitarBotones();
+            pintarBotonEliminar();
 
             fgmBinding.btnComenzarMision.setTextColor(Color.BLACK);
             fgmBinding.btnComenzarMision.setBackgroundColor(Color.YELLOW);
@@ -217,16 +221,32 @@ public class FgmListaMisiones extends Fragment {
 
         fgmBinding.btnEliminarMision.setOnClickListener(view -> {
             btnEliminarMisionActivado=true;
-            mainViewModel.sshEliminarMision(misionSeleccionada);
 
-            fgmBinding.btnEliminarMision.setTextColor(Color.BLACK);
-            fgmBinding.btnEliminarMision.setBackgroundColor(Color.YELLOW);
-            fgmBinding.btnEliminarMision.setText("Eliminando...");
+            final AlertDialog.Builder dialog = new AlertDialog.Builder(getContext());
+            dialog.setMessage("¿Desea eliminar la misión: "+misionSeleccionada+" ?").
+                    setPositiveButton("Eliminar",(a,b)->{
+
+                        deshabilitarBotones();
+
+                        fgmBinding.btnEliminarMision.setTextColor(Color.BLACK);
+                        fgmBinding.btnEliminarMision.setBackgroundColor(Color.YELLOW);
+                        fgmBinding.btnEliminarMision.setText("Eliminando...");
+
+                        mainViewModel.sshEliminarMision(misionSeleccionada);
+
+                    }).
+                    setNegativeButton("Cancelar",(a,b)->{
+                        a.dismiss();
+                    });
+            dialog.show();
+
 //            Toast.makeText(getContext(),"Ejecutando ssh rm ~/misiones/\"+nombreMision+\"nombre.yaml",Toast.LENGTH_LONG).show();
         });
 
         fgmBinding.btnVolverListaMapas.setOnClickListener(view -> {
             btnListaMapasActivado=true;
+            deshabilitarBotones();
+            pintarBotonEliminar();
 
             if(mainViewModel.isNodoLocalizacionActivado())
                 mainViewModel.solicitarTerminarLocalizacion();
@@ -234,11 +254,38 @@ public class FgmListaMisiones extends Fragment {
 
         fgmBinding.btnVolverMenuPrincipal.setOnClickListener(view -> {
             btnMenuPrincipalActivado=true;
+            deshabilitarBotones();
+            pintarBotonEliminar();
 
             if(mainViewModel.isNodoLocalizacionActivado())
                 mainViewModel.solicitarTerminarLocalizacion();
         });
     }
+
+
+    private void deshabilitarBotones(){
+        listMissionsAdapter.setClickable(false);
+
+        fgmBinding.btnComenzarMision.setEnabled(false);
+        fgmBinding.btnEliminarMision.setEnabled(false);
+        fgmBinding.btnVolverListaMapas.setEnabled(false);
+        fgmBinding.btnVolverMenuPrincipal.setEnabled(false);
+    }
+
+    private void habilitarBotones(){
+        listMissionsAdapter.setClickable(true);
+
+        fgmBinding.btnComenzarMision.setEnabled(true);
+        fgmBinding.btnEliminarMision.setEnabled(true);
+        fgmBinding.btnVolverListaMapas.setEnabled(true);
+        fgmBinding.btnVolverMenuPrincipal.setEnabled(true);
+    }
+
+    public void pintarBotonEliminar(){
+        fgmBinding.btnEliminarMision.setBackgroundColor(getResources().getColor(R.color.light_gray));
+        fgmBinding.btnEliminarMision.setTextColor(getResources().getColor(R.color.dark_gray));
+    }
+
 
     public void activarListenerListaMisiones(){
         mainViewModel.getListaMisionesSolicitada().observe(getViewLifecycleOwner(),listaRecibida->{
@@ -414,6 +461,9 @@ public class FgmListaMisiones extends Fragment {
                 }
                 else if(btnEliminarMisionActivado) {
                     btnEliminarMisionActivado = false;
+
+                    //habilitarr botones
+                    habilitarBotones();
 
                     fgmBinding.btnEliminarMision.setTextColor(Color.WHITE);
                     fgmBinding.btnEliminarMision.setBackgroundColor(getResources().getColor(R.color.pavisa_blue));

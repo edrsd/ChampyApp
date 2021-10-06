@@ -7,7 +7,11 @@
     <color name="teal_700">#FF018786</color>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
+    <color name="dark_gray">#66000000</color>
+    <color name="light_gray">#22000000</color>
 
     <color name="pavisa_blue">#1149f2</color>
     <color name="pavisa_blue_light">#2b73fb</color>
+
+    <drawable name="seleccionado">#1149f2</drawable>
 </resources>

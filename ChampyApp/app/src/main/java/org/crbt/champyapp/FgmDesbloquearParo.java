@@ -104,8 +104,11 @@ public class FgmDesbloquearParo extends Fragment {
 
                 if(mainViewModel.isControlManualActivado())
                     irControlManual();
-                else
+                else{
+                    mainViewModel.setVentanaAnterior("fgm_mission_ol");
                     irMisionEnDirecto();
+                }
+
 
 
                 Toast.makeText(getContext(),"Paro desacivado",Toast.LENGTH_SHORT).show();
@@ -132,7 +135,7 @@ public class FgmDesbloquearParo extends Fragment {
 
     public void irMisionEnDirecto(){
         getActivity().getSupportFragmentManager().beginTransaction()
-                .replace(R.id.main_container,FgmMisionOnLive.newInstance(),"fgm_mision_ol")
+                .replace(R.id.main_container,FgmMisionOnLive.newInstance(),"fgm_mission_ol")
                 .commit();
 
 //        getActivity().getSupportFragmentManager().beginTransaction()

@@ -102,9 +102,12 @@ public class FgmMisionOnLive extends Fragment {
         fgmBinding.btnDetenerMision.setOnClickListener(view -> {
 
             final AlertDialog.Builder dialog = new AlertDialog.Builder(getContext());
-            dialog.setMessage("¿Desea detener la misión?").
-                    setPositiveButton("Aceptar",(a,b)->{ detenerMision(); }).
-                    setNegativeButton("Cancelar",(a,b)->{
+            dialog.setMessage("¿Desea detener la misión?")
+                    .setPositiveButton("Aceptar",(a,b)->{
+                        deshabilitarControles();
+                        detenerMision();
+                    })
+                    .setNegativeButton("Cancelar",(a,b)->{
                         btnDetenerMisionActivado=false;
                         a.dismiss();
                     });
@@ -113,6 +116,8 @@ public class FgmMisionOnLive extends Fragment {
 
         fgmBinding.btnCambiarModo.setOnClickListener(view -> {
             btnCambiarModoActivado=true;
+
+            deshabilitarControles();
 //            activarListenerRespuestaRobot();
             if(fgmBinding.btnCambiarModo.getText().toString().equals("Modo manual")){
                 mainViewModel.actualizarEstadoARobotEnManual();
@@ -215,6 +220,48 @@ public class FgmMisionOnLive extends Fragment {
     }
 
 
+    private void deshabilitarControles(){
+        fgmBinding.btnCambiarModo.setEnabled(false);
+        fgmBinding.btnDetenerMision.setEnabled(false);
+        fgmBinding.btnParoEmergencia.setEnabled(false);
+        fgmBinding.btnActivarCamara.setEnabled(false);
+        fgmBinding.btnMantenerParaMover.setEnabled(false);
+        fgmBinding.cvStaker.setEnabled(false);
+        fgmBinding.cvPinzas.setEnabled(false);
+
+        fgmBinding.btnCerrarPinzas.setEnabled(false);
+        fgmBinding.btnAbrirPinzas.setEnabled(false);
+        fgmBinding.btnSacarStaker.setEnabled(false);
+        fgmBinding.btnMeterStaker.setEnabled(false);
+        fgmBinding.sbVelocidadPinza.setEnabled(false);
+        fgmBinding.sbVelocidadStaker.setEnabled(false);
+
+        fgmBinding.flJoystick.setVisibility(View.GONE);
+        joystick.setTouchEnable(false);
+//        joystick.desactivarJoystickConInactividad();
+    }
+
+    private void habilitarControles(){
+        fgmBinding.btnCambiarModo.setEnabled(true);
+        fgmBinding.btnDetenerMision.setEnabled(true);
+        fgmBinding.btnParoEmergencia.setEnabled(true);
+        fgmBinding.btnActivarCamara.setEnabled(true);
+        fgmBinding.btnMantenerParaMover.setEnabled(true);
+        fgmBinding.cvStaker.setEnabled(true);
+        fgmBinding.cvPinzas.setEnabled(true);
+
+        fgmBinding.btnCerrarPinzas.setEnabled(true);
+        fgmBinding.btnAbrirPinzas.setEnabled(true);
+        fgmBinding.btnSacarStaker.setEnabled(true);
+        fgmBinding.btnMeterStaker.setEnabled(true);
+        fgmBinding.sbVelocidadPinza.setEnabled(true);
+        fgmBinding.sbVelocidadStaker.setEnabled(true);
+
+//        fgmBinding.flJoystick.setVisibility(View.GONE);
+        joystick.setTouchEnable(true);
+//        joystick.activarJoystickConInactividad();
+    }
+
 
     public void activarListenerRespuestaRobot(){
         mainViewModel.getStatusRespuestaRobot().observe(getViewLifecycleOwner(),statusRespuestaRobot->{
@@ -225,6 +272,8 @@ public class FgmMisionOnLive extends Fragment {
                         if(fgmBinding.btnCambiarModo.getText().toString().equals("Modo manual")){
                             fgmBinding.btnCambiarModo.setText("Modo auto");
 
+//                            habilitarControles();
+
                             joystick.setNodoPublicador(new PubJoystick());
                             fgmBinding.btnMantenerParaMover.setVisibility(View.VISIBLE);
                             fgmBinding.cvPinzas.setVisibility(View.VISIBLE);
@@ -233,7 +282,8 @@ public class FgmMisionOnLive extends Fragment {
 
                         }
                         else if(fgmBinding.btnCambiarModo.getText().toString().equals("Modo auto")){
-//                            fgmBinding.flJoystick.setVisibility(View.GONE);
+//                            habilitarControles();
+
                             fgmBinding.btnMantenerParaMover.setVisibility(View.GONE);
                             fgmBinding.cvPinzas.setVisibility(View.GONE);
                             fgmBinding.cvStaker.setVisibility(View.GONE);
@@ -267,6 +317,9 @@ public class FgmMisionOnLive extends Fragment {
                else if(btnParoActivado){
                    btnParoActivado=false;
 
+                    //Se detine el nodo publicador del joystick
+                    joystick.unSetNodoPublicador();
+
                    irParoDeEmergencia();
                     mainViewModel.reiniciarBanderaRespuestaRobot();
 //                    mainViewModel.terminarEscuchaRespuestaRobot();
@@ -274,6 +327,7 @@ public class FgmMisionOnLive extends Fragment {
 //                    mainViewModel.terminarEscuchaMapeo();
 //                    joystick.unSetNodoPublicador();
                 }
+               habilitarControles();
             }
             else if(statusRespuestaRobot== RosRepository.RespuestaRobotStatus.FAILED){
                 Toast.makeText(getContext(),"Ha llegado la petición, pero no se pudo inicia mapeo",Toast.LENGTH_LONG).show();
@@ -315,6 +369,7 @@ public class FgmMisionOnLive extends Fragment {
 
 
     public void irParoDeEmergencia(){
+        mainViewModel.setControlManualDesactivado();
         getActivity().getSupportFragmentManager().beginTransaction()
                 .replace(R.id.main_container,FgmDesbloquearParo.newInstance(),"fgm_desbloquear_paro")
                 .commit();

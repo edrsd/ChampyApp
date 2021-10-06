@@ -1,5 +1,6 @@
 package org.crbt.champyapp;
 
+import android.content.ClipData;
 import android.graphics.Color;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -15,6 +16,10 @@ public class AdaptadorDeListas extends RecyclerView.Adapter<AdaptadorDeListas.Li
 
     ArrayList<String> elementosLista;
     private View.OnClickListener listener;
+
+    private int selected_position = -1;
+
+    private boolean isClickable=true;
 
     public AdaptadorDeListas(ArrayList<String> elementos){
         this.elementosLista=elementos;
@@ -32,6 +37,7 @@ public class AdaptadorDeListas extends RecyclerView.Adapter<AdaptadorDeListas.Li
     @Override
     public void onBindViewHolder(@NonNull AdaptadorDeListas.ListViewHolder holder, int position) {
         holder.tvNombreElemento.setText(elementosLista.get(position));
+        holder.itemView.setSelected(position==selected_position);
     }
 
     @Override
@@ -43,10 +49,24 @@ public class AdaptadorDeListas extends RecyclerView.Adapter<AdaptadorDeListas.Li
         this.listener=listener;
     }
 
+    public void setItemPosition(int position){
+        selected_position=position;
+    }
+
+    public int getItemPosition(){
+        return selected_position;
+    }
+
+    public void setClickable(boolean clickable){
+        isClickable=clickable;
+    }
+
     @Override
     public void onClick(View view) {
-        if(listener != null)
+        if(listener != null && isClickable ){
             listener.onClick(view);
+            notifyDataSetChanged();
+        }
     }
 
     static public class ListViewHolder extends RecyclerView.ViewHolder {

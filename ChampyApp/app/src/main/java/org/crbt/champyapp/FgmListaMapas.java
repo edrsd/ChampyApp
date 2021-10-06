@@ -44,6 +44,7 @@ public class FgmListaMapas extends Fragment
     String mapaSeleccionado;
 
     boolean btnCrearMisionActivado=false,btnEliminarActivado=false,btnMenuPrincipalActivado=false,btnListaMisionesActivado=false;
+    boolean isMapSelected=false;
 
     SubListenerListRequest subListenerListRequest;
 
@@ -112,7 +113,7 @@ public class FgmListaMapas extends Fragment
 
         listaMapas=new ArrayList<>();
 
-        listaMapas.add("Cargando lista...");
+        listaMapas.add("Espere, cargando lista...");
 
         setupAdapterRecyclerViewList();
 
@@ -124,9 +125,14 @@ public class FgmListaMapas extends Fragment
         fgmBinding.rvListaMapas.setAdapter(listMapsAdapter);
 
         listMapsAdapter.setOnClickListener(view1 -> {
-
             posActualMapaSeleccionado=fgmBinding.rvListaMapas.getChildLayoutPosition(view1);
+            listMapsAdapter.setItemPosition(posActualMapaSeleccionado);
+
             mapaSeleccionado=listaMapas.get(posActualMapaSeleccionado);
+
+//            fgmBinding.rvListaMapas.
+//            view1.setSelected(true);
+//            notifyAll();
 
             fgmBinding.clContenedorBotones.setVisibility(View.VISIBLE);
 
@@ -135,7 +141,7 @@ public class FgmListaMapas extends Fragment
 //            fgmBinding.btnEliminarMapa.setText("Eliminar");
 
 
-            Toast.makeText(getContext(),"mapa "+mapaSeleccionado+"seleccionado",Toast.LENGTH_SHORT).show();
+//            Toast.makeText(getContext(),"mapa "+mapaSeleccionado+"seleccionado",Toast.LENGTH_SHORT).show();
 
 
         });
@@ -167,7 +173,8 @@ public class FgmListaMapas extends Fragment
         fgmBinding.btnCrearMision.setOnClickListener(view -> {
             if(mapaSeleccionado!=null){
                 btnCrearMisionActivado=true;
-                desabilitarBotones();
+                deshabilitarBotones();
+                pintarBotonEliminar();
 
                 mainViewModel.sshCargarMapa(mapaSeleccionado);
 
@@ -185,7 +192,8 @@ public class FgmListaMapas extends Fragment
 
         fgmBinding.btnListaMisiones.setOnClickListener(view -> {
             btnListaMisionesActivado=true;
-            desabilitarBotones();
+            deshabilitarBotones();
+            pintarBotonEliminar();
 
             mainViewModel.sshCargarMapa(mapaSeleccionado);
 
@@ -203,11 +211,12 @@ public class FgmListaMapas extends Fragment
                 dialog.setMessage("¿Desea eliminar el mapa: "+mapaSeleccionado+" ?").
                         setPositiveButton("Eliminar",(a,b)->{
 
-                            desabilitarBotones();
+                            deshabilitarBotones();
 
                             fgmBinding.btnEliminarMapa.setTextColor(Color.BLACK);
                             fgmBinding.btnEliminarMapa.setBackgroundColor(Color.YELLOW);
                             fgmBinding.btnEliminarMapa.setText("Eliminando...");
+
                             mainViewModel.setNombreMapa(mapaSeleccionado);
                             mainViewModel.sshEliminarMapa();
 
@@ -224,7 +233,8 @@ public class FgmListaMapas extends Fragment
 
         fgmBinding.btnVolverMenuPrincipal.setOnClickListener(view -> {
             btnMenuPrincipalActivado=true;
-            desabilitarBotones();
+            deshabilitarBotones();
+            pintarBotonEliminar();
 
             irMenuPrincipal();
         });
@@ -232,7 +242,9 @@ public class FgmListaMapas extends Fragment
 
 //----------------------------------------------------------------------------------------------
 
-    private void desabilitarBotones(){
+    private void deshabilitarBotones(){
+        listMapsAdapter.setClickable(false);
+
         fgmBinding.btnCrearMision.setEnabled(false);
         fgmBinding.btnListaMisiones.setEnabled(false);
         fgmBinding.btnEliminarMapa.setEnabled(false);
@@ -240,12 +252,18 @@ public class FgmListaMapas extends Fragment
     }
 
     private void habilitarBotones(){
+        listMapsAdapter.setClickable(true);
+
         fgmBinding.btnCrearMision.setEnabled(true);
         fgmBinding.btnListaMisiones.setEnabled(true);
         fgmBinding.btnEliminarMapa.setEnabled(true);
         fgmBinding.btnVolverMenuPrincipal.setEnabled(true);
     }
 
+    public void pintarBotonEliminar(){
+        fgmBinding.btnEliminarMapa.setBackgroundColor(getResources().getColor(R.color.light_gray));
+        fgmBinding.btnEliminarMapa.setTextColor(getResources().getColor(R.color.dark_gray));
+    }
 
     public void activarListenerListaMapas(){
         mainViewModel.getListaSolicitada().observe(getViewLifecycleOwner(),listaRecibida->{
@@ -350,12 +368,12 @@ public class FgmListaMapas extends Fragment
                 if(btnEliminarActivado){
                     btnEliminarActivado=false;
 
-                    //habilitarr botones
-                    habilitarBotones();
-
                     fgmBinding.btnEliminarMapa.setTextColor(Color.WHITE);
                     fgmBinding.btnEliminarMapa.setBackgroundColor(getResources().getColor(R.color.pavisa_blue));
-                    fgmBinding.btnEliminarMapa.setText("Eliminar");
+                    fgmBinding.btnEliminarMapa.setText("Eliminar mapa");
+
+                    //habilitarr botones
+                    habilitarBotones();
 
                     fgmBinding.clContenedorBotones.setVisibility(View.GONE);
                     //Se actualiza la lista de misiones

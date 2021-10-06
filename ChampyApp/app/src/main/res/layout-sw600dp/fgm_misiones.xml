@@ -24,21 +24,21 @@
                 android:id="@+id/btn_menu_crear_mision"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:textSize="20sp"
+                android:textSize="25sp"
                 android:text="Crear Misión" />
 
             <Button
                 android:id="@+id/btn_menu_gestionar_mision"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:textSize="20sp"
+                android:textSize="25sp"
                 android:text="Gestionar Misiones" />
 
             <Button
                 android:id="@+id/btn_ir_menu_principal"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:textSize="20sp"
+                android:textSize="25sp"
                 android:text="Menú principal" />
         </LinearLayout>
     </androidx.cardview.widget.CardView>

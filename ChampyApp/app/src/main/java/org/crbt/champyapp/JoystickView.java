@@ -92,10 +92,10 @@ public class JoystickView extends View {
         posX = x;
         posY = y;
 
-        float velocidadLineal=y*0.8f;
-        float velocidadAngular=x*0.8f;
+        float velocidadLineal=y*coefVelocidad;
+        float velocidadAngular=x*coefVelocidad;
 
-        if (y > 0.2 || y < -0.2) {
+        if (y > 0.1 || y < -0.1) {
 //            float velocidadLineal=y*coeficienteVelLineal;
 //            float velocidadAngular=x*coeficienteVelAngular;
 
@@ -113,6 +113,10 @@ public class JoystickView extends View {
 
         // Redraw
         invalidate();
+    }
+
+    public void setVelocidadRuedas(int seekBarVelocidad){
+        coefVelocidad=seekBarVelocidad/100f+0.5f;
     }
 
     @Override
@@ -232,7 +236,5 @@ public class JoystickView extends View {
         return this.nodoPublicador;
     }
 
-    public void setVelocidadRuedas(int seekBarVelocidad){
-        coefVelocidad=seekBarVelocidad/100f+0.5f;
-    }
+
 }
