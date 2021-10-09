@@ -4,6 +4,7 @@ import android.app.Application;
 import android.os.Handler;
 import android.os.Looper;
 import android.util.Log;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.lifecycle.LiveData;
@@ -46,6 +47,7 @@ public class SshRepositoryImpl implements SshRepository {
     public static final String[] COMANDO_ABRIR_MAPA_EXISTENTE={"rosparam set database_path \"~/mapas/nombre.db\""};
     public static final String[] COMANDO_ELIMINAR_MAPA_EXISTENTE={"rm ~/mapas/nombre.db"};
 
+    private String error;
 
     JSch jsch;
     Session session;
@@ -64,7 +66,7 @@ public class SshRepositoryImpl implements SshRepository {
 
     Handler mainHandler;
 
-    public enum SshCommandsStatus {DISCONNECTED, PENDING, DONE, FAILED}
+    public enum SshCommandsStatus {DISCONNECTED, PENDING, DONE, FAILED,ERROR}
 
     private SshRepositoryImpl(@NonNull Application application) {
         connected = new MutableLiveData<>();
@@ -395,6 +397,8 @@ public class SshRepositoryImpl implements SshRepository {
                 iniciarSesionSSH(sshEntity.username, sshEntity.password, sshEntity.ip, sshEntity.port,comandos);
             } catch (Exception e) {
                 e.printStackTrace();
+                establecerError(e.toString());
+                sshCommandsStatus.postValue(SshCommandsStatus.ERROR);
             }
         }).start();
     }
@@ -528,6 +532,12 @@ public class SshRepositoryImpl implements SshRepository {
         this.sshCommandsStatus.postValue(SshCommandsStatus.DISCONNECTED);
     }
 
+    public String solicitarError(){
+        return error;
+    }
 
+    public void establecerError(String errorCapturado){
+        this.error=errorCapturado;
+    }
 
 }

@@ -107,7 +107,7 @@ public class FgmCrearMapaOnLive extends Fragment {
 
         fgmBinding.btnGuardarCmol.setOnClickListener(view1 -> {
             isSaveBtnClicked=true;
-            desabilitarBotones();
+            deshabilitarBotones();
 
             fgmBinding.btnGuardarCmol.setTextColor(Color.BLACK);
             fgmBinding.btnGuardarCmol.setBackgroundColor(Color.YELLOW);
@@ -120,7 +120,7 @@ public class FgmCrearMapaOnLive extends Fragment {
 
         fgmBinding.btnCancelarCmol.setOnClickListener(view -> {
             isCancelBtnClicked=true;
-            desabilitarBotones();
+            deshabilitarBotones();
 //            activarListenerRespuestaRobot();
             mainViewModel.solicitarTerminarMapeoEnRobot();
 
@@ -133,7 +133,7 @@ public class FgmCrearMapaOnLive extends Fragment {
 
         fgmBinding.btnMenuPrincipal.setOnClickListener(view -> {
             btnMenuPrincipalActivado=true;
-            desabilitarBotones();
+            deshabilitarBotones();
 
             mainViewModel.solicitarTerminarMapeoEnRobot();
             Toast.makeText(getContext(),"Solicitando finalización de mapeo con publicador_app=5",Toast.LENGTH_SHORT).show();
@@ -165,7 +165,7 @@ public class FgmCrearMapaOnLive extends Fragment {
     }
 
 
-    private void desabilitarBotones(){
+    private void deshabilitarBotones(){
         fgmBinding.btnCancelarCmol.setEnabled(false);
         fgmBinding.btnGuardarCmol.setEnabled(false);
         fgmBinding.btnMenuPrincipal.setEnabled(false);

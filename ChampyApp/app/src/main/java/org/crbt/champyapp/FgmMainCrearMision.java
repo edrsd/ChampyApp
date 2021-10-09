@@ -215,7 +215,7 @@ public class FgmMainCrearMision extends Fragment {
             if(missionEntity.obtenerTempladoresDeMision().size()>0 && missionEntity.obtenerMaquinasDeMision().size()>0){
                 btnGuardarMisionPresionado=true;
 
-//                mainViewModel.sendFullMissiontoRobot(missionEntity);//Envio de todos los puntos de la misión
+//                mainViewModel.sendFullMissiontoRobot(missionEntity);//Envio de todos los puntos de la misión xon su información respectiva
                 mainViewModel.sendMisionToRobot(missionEntity);//Envio solo del numero de puntos de misión
                 Toast.makeText(getContext(),"Enviando la misión al robot con set_mission",Toast.LENGTH_SHORT).show();
             }

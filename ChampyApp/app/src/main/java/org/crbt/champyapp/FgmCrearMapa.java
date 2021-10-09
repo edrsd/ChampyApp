@@ -165,12 +165,25 @@ public class FgmCrearMapa extends Fragment {
 
             } else if (sshCommandsStatus == SshRepositoryImpl.SshCommandsStatus.FAILED) {
                 Toast.makeText(getContext(), "SSH: No se ha podido realizar el comando", Toast.LENGTH_LONG).show();
-
+                mainViewModel.reiniciarBanderaComandosRealizados();
                 //Se muestra una ventana para conectar de nuevo cuando el tiempo de conexión expira
 //                final AlertDialog.Builder dialog = new AlertDialog.Builder(getContext());
 //                dialog.setMessage("No se ha podido establecer conexión")
 //                        .setPositiveButton("Ok",(dialogInterface,i)->{ dialogInterface.dismiss(); });
 //                dialog.show();
+            }
+            else if(sshCommandsStatus == SshRepositoryImpl.SshCommandsStatus.ERROR){
+                String mensajeError=mainViewModel.solicitarError();
+
+                final AlertDialog.Builder dialog = new AlertDialog.Builder(getContext());
+                dialog.setTitle("Error al establecer la conexión SSH.");
+                dialog.setMessage("\n"+mensajeError)
+                        .setPositiveButton("Ok",(a,b)->{
+                            a.dismiss();
+                        });
+                dialog.show();
+                irFgmMenuPrincipal();
+                mainViewModel.reiniciarBanderaComandosRealizados();
             }
         });
     }

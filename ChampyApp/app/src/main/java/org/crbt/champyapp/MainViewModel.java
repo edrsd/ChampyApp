@@ -28,6 +28,8 @@ public class MainViewModel extends AndroidViewModel {
 
     static boolean nodoLocalizacionActivado=false,nodoMapeoActivado=false,nodoAutoActivado=false,controlManualActivado=false;
 
+    static String error;
+
 
     //--------------------------CONSTRUCTOR------------------------------------------------
     public MainViewModel(@NonNull Application application){
@@ -570,8 +572,6 @@ public class MainViewModel extends AndroidViewModel {
         }
     }
 
-
-
     public void setVentanaAnterior(String ventanaAnterior){
         this.ventanaAnterior=ventanaAnterior;
     }
@@ -579,4 +579,9 @@ public class MainViewModel extends AndroidViewModel {
     public String getVentanaAnterior(){
         return ventanaAnterior;
     }
+
+    public String solicitarError(){
+        return sshRepository.solicitarError();
+    }
+
 }
