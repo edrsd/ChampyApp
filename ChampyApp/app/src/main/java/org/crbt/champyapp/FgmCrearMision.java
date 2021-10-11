@@ -5,6 +5,7 @@ import android.graphics.Color;
 import android.os.Bundle;
 
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.AlertDialog;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.lifecycle.ViewModelProvider;
@@ -130,7 +131,27 @@ public class FgmCrearMision extends Fragment {
                 fgmBinding.btnGuardarMision.setBackgroundColor(Color.RED);
                 Toast.makeText(getContext(),"No se ha podido establecer conexión ssh con el robot",Toast.LENGTH_LONG).show();
             }
+            else if(sshCommandsStatus == SshRepositoryImpl.SshCommandsStatus.ERROR){
+                String mensajeError=mainViewModel.solicitarError();
+
+                final AlertDialog.Builder dialog = new AlertDialog.Builder(getContext());
+                dialog.setTitle("Error al establecer la conexión SSH.");
+                dialog.setMessage("\n"+mensajeError)
+                        .setPositiveButton("Ok",(a,b)->{
+                            a.dismiss();
+                        });
+                dialog.show();
+                mainViewModel.reiniciarBanderaComandosRealizados();
+                irMenuPrincipal();
+
+            }
         });
+    }
+
+    public void irMenuPrincipal(){
+        getActivity().getSupportFragmentManager().beginTransaction()
+                .replace(R.id.main_container,FgmMainMenu.newInstance(),"fgm_menu_principal")
+                .commit();
     }
 
     public void irListaMisiones(){

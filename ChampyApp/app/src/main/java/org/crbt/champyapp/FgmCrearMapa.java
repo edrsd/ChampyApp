@@ -182,8 +182,10 @@ public class FgmCrearMapa extends Fragment {
                             a.dismiss();
                         });
                 dialog.show();
-                irFgmMenuPrincipal();
                 mainViewModel.reiniciarBanderaComandosRealizados();
+
+                irFgmMenuPrincipal();
+
             }
         });
     }

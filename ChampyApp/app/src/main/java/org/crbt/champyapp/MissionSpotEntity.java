@@ -15,9 +15,6 @@ public class MissionSpotEntity {
     private float accionId;
     private float accionBotonId;
     private float tiempoAlerta;
-
-
-
     private float tiempoEspera;
     private float idTagEstacionado;
     private float distanciaEstacionado;

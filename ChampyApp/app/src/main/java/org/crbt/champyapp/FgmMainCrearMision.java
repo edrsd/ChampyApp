@@ -215,8 +215,8 @@ public class FgmMainCrearMision extends Fragment {
             if(missionEntity.obtenerTempladoresDeMision().size()>0 && missionEntity.obtenerMaquinasDeMision().size()>0){
                 btnGuardarMisionPresionado=true;
 
-//                mainViewModel.sendFullMissiontoRobot(missionEntity);//Envio de todos los puntos de la misión xon su información respectiva
-                mainViewModel.sendMisionToRobot(missionEntity);//Envio solo del numero de puntos de misión
+//                mainViewModel.sendFullMissiontoRobot(missionEntity);//Guardar mision verdión 2:Envio de todos los puntos de la misión con su información respectiva
+                mainViewModel.sendMisionToRobot(missionEntity);//Guardar midión version 1: Envio solo del numero de puntos de misión
                 Toast.makeText(getContext(),"Enviando la misión al robot con set_mission",Toast.LENGTH_SHORT).show();
             }
             else{
@@ -334,7 +334,6 @@ public class FgmMainCrearMision extends Fragment {
 //-------------------------------------BOTON GUARDAR PUNTO DE MISION
         fgmBinding.btnSaveSpotMissionParams.setOnClickListener(view -> {
             btnGuardarPuntoPresionado=true;//Guardar misión v1
-//            activarListenerRespuestaDelRobot();//Guardar misión v1
             mainViewModel.sendMissionSpotToRobot(missionSpotEntity);//Guardar misión v1
 
             //------------------Guardar misión V2-------------------------------------------------
@@ -805,7 +804,7 @@ public class FgmMainCrearMision extends Fragment {
             if(missionSpot.getAccionId()==0){
                 fgmBinding.actvIdAccion.setText("Máquina-Tag");
                 fgmBinding.tvIdTagEstacionado.setText(Float.toString(missionSpot.getIdTagEstacionado()));
-                fgmBinding.tvAnguloTagEstacionado.setText(Float.toString(missionSpot.getIdTagEstacionado()));
+                fgmBinding.tvAnguloTagEstacionado.setText(Float.toString(missionSpot.getAnguloEstacionado()));
                 fgmBinding.tvDistanciaTagEstacionado.setText(Float.toString(missionSpot.getDistanciaEstacionado()));
                 fgmBinding.tvAlturaTagEstacionado.setText(Float.toString(missionSpot.getAlturaTemplador()));
                 fgmBinding.clParametrosTagTv.setVisibility(View.VISIBLE);

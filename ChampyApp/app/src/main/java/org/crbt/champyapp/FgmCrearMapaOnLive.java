@@ -5,6 +5,7 @@ import android.graphics.Color;
 import android.os.Bundle;
 
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.AlertDialog;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.lifecycle.ViewModelProvider;
@@ -256,6 +257,20 @@ public class FgmCrearMapaOnLive extends Fragment {
             else if(sshCommandsStatus == SshRepositoryImpl.SshCommandsStatus.FAILED){
                 fgmBinding.btnCancelarCmol.setText("Cancelar");
                 fgmBinding.btnCancelarCmol.setBackgroundColor(Color.RED);
+            }
+            else if(sshCommandsStatus == SshRepositoryImpl.SshCommandsStatus.ERROR){
+                String mensajeError=mainViewModel.solicitarError();
+
+                final AlertDialog.Builder dialog = new AlertDialog.Builder(getContext());
+                dialog.setTitle("Error al establecer la conexión SSH.");
+                dialog.setMessage("\n"+mensajeError)
+                        .setPositiveButton("Ok",(a,b)->{
+                            a.dismiss();
+                        });
+                dialog.show();
+                mainViewModel.reiniciarBanderaComandosRealizados();
+                irMenuPrincipal();
+
             }
         });
     }

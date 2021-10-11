@@ -400,6 +400,19 @@ public class FgmListaMapas extends Fragment
 //                        .setPositiveButton("Ok",(dialogInterface,i)->{ dialogInterface.dismiss(); });
 //                dialog.show();
             }
+            else if(sshCommandsStatus == SshRepositoryImpl.SshCommandsStatus.ERROR){
+                String mensajeError=mainViewModel.solicitarError();
+
+                final AlertDialog.Builder dialog = new AlertDialog.Builder(getContext());
+                dialog.setTitle("Error al establecer la conexión SSH.");
+                dialog.setMessage("\n"+mensajeError)
+                        .setPositiveButton("Ok",(a,b)->{
+                            a.dismiss();
+                        });
+                dialog.show();
+                mainViewModel.reiniciarBanderaComandosRealizados();
+                irMenuPrincipal();
+            }
         });
     }
 
