@@ -850,7 +850,7 @@ public class FgmMainCrearMision extends Fragment {
             fgmBinding.tvQz.setText(Float.toString(missionSpot.getQz()));
             fgmBinding.tvQw.setText(Float.toString(missionSpot.getQw()));
             fgmBinding.tvIdTagEstacionado.setText(Float.toString(missionSpot.getIdTagEstacionado()));
-            fgmBinding.tvAnguloTagEstacionado.setText(Float.toString(missionSpot.getIdTagEstacionado()));
+            fgmBinding.tvAnguloTagEstacionado.setText(Float.toString(missionSpot.getAnguloEstacionado()));
             fgmBinding.tvDistanciaTagEstacionado.setText(Float.toString(missionSpot.getDistanciaEstacionado()));
             fgmBinding.tvAlturaTagEstacionado.setText(Float.toString(missionSpot.getAlturaTemplador()));
 
